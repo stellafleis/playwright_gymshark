@@ -1,40 +1,14 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../POMs/loginPage';
-import { HomePage } from '../POMs/homePage';
-import { LoginEnvironments } from '../environments/loginEnvironments';
+import { test } from '../POMs/fixture';
+import { expect } from '@playwright/test';
 
 
-test('Logout', async ({ page }) => {
-    const homePage = new HomePage(page);
-    const loginEnvironments = new LoginEnvironments(page);
-
-    await page.goto(loginEnvironments.baseUrl);
-    await homePage.acceptCookies();
-
- 
-    await homePage.goToAccountPage();
-
-
-    const loginPage = new LoginPage(page);
-
-    await loginPage.login(loginEnvironments.correctEmail, loginEnvironments.correctPassword);
-    await loginPage.assertLoggedInPageIsDisplayed();
-
+test('Logout', async ({ loginPage, page }) => {
+    await loginPage.login;
     await loginPage.assertSuccessfulLogout();
 });
 
-test('Nonexistant logout modal', async ({ page }) => {
-    const homePage = new HomePage(page);
-    const loginEnvironments = new LoginEnvironments(page);
-
-    await page.goto(loginEnvironments.baseUrl);
-    await homePage.acceptCookies();
-    await homePage.goToAccountPage();
-
-
-    const loginPage = new LoginPage(page);
-    await loginPage.login(loginEnvironments.correctEmail, loginEnvironments.correctPassword);
-    await loginPage.assertLoggedInPageIsDisplayed();
+test('Nonexistant logout modal', async ({ loginPage, page }) => {
+    await loginPage.login;
 
     await loginPage.assertLogoutModalIsDisplayed();
 });

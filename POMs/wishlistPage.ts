@@ -13,14 +13,12 @@ export class WishlistPage {
         this.removeAllWishlistProductsModal = page.getByLabel('Remove all wishlist products modal');
         this.yesButton = page.getByRole('button', { name: 'Yes' });
         this.emptyWishlist = page.getByRole('heading', { name: 'your wishlist is empty' });
-
     }
 
     async allItemsAreRemoved() {
-        await this.removeAllItemLink.click();   
+        await this.removeAllItemLink.click();
         await expect(this.removeAllWishlistProductsModal).toBeVisible();
         await this.yesButton.click();
         await expect(this.emptyWishlist).toBeVisible();
     }
-    
 }

@@ -20,7 +20,7 @@ test('Login with correct credentials', async ({ page }) => {
 
 test('Login with incorrect credentials', async ({ page }) => {
     const homePage = new HomePage(page);
-    const loginEnvironments  = new LoginEnvironments(page);
+    const loginEnvironments = new LoginEnvironments(page);
 
     await page.goto(loginEnvironments.baseUrl);
     await homePage.acceptCookies();
@@ -31,10 +31,9 @@ test('Login with incorrect credentials', async ({ page }) => {
 
     await loginPage.login(loginEnvironments.incorrectEmail, loginEnvironments.incorrectPassword);
     await loginPage.assertLoginErrorMessageIsDisplayed();
-
 });
 
-test('Login with empty fields',async ({page}) => {
+test('Login with empty fields', async ({ page }) => {
     const homePage = new HomePage(page);
     const loginEnvironments = new LoginEnvironments(page);
 
@@ -45,7 +44,6 @@ test('Login with empty fields',async ({page}) => {
 
     const loginPage = new LoginPage(page);
     await loginPage.assertEmptyFieldLoginError();
-    
 })
 
 test('Forgot Password', async ({ page }) => {

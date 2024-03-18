@@ -20,12 +20,10 @@ export class CartPage {
 
     }
 
-
     async assertCheckout() {
         await this.checkout.click();
         expect(this.shippingInformation).toBeVisible;
     }
-
 
     async gifcardInput() {
         await this.giftCard.fill('10%OFF');
