@@ -19,7 +19,7 @@ export class HomePage {
 
     constructor(page: Page) {
         this.page = page;
-        this.acceptCookiesButton = page.getByRole('button', { name: 'Accept All Cookies' });
+        this.acceptCookiesButton = page.locator("[id='onetrust-accept-btn-handler']");
         this.acccountLink = page.locator('.header_wrapper__ZQDOc > div:nth-child(5)');
         this.countryDropdownn = page.getByRole('combobox').first();
         this.confirmButton = page.getByRole('button', { name: 'confirm' });
@@ -41,7 +41,7 @@ export class HomePage {
     }
 
     async assertAccountPageLink() {
-        await expect(this.page).toHaveURL('https://auth.gymshark.com/login?state=hKFo2SAydm9QUjFlaGNMUFF6b1NIN1VOWmFxSkFLY0I3cklZRaFupWxvZ2luo3RpZNkgMFpWRzBLMVphTjFrQmxHN193ZDJ1ZE8wd1ZBcFdPc1CjY2lk2SAyd2JDeUhWbTFEZElYMkV3ZEU3bTBxVkliWGpPQ1RYag&client=2wbCyHVm1DdIX2EwdE7m0qVIbXjOCTXj&protocol=oauth2&scope=openid%20profile%20email&response_type=code&redirect_uri=https%3A%2F%2Fus.shop.gymshark.com%2Fapi%2Fauth%2Fcallback&audience=https%3A%2F%2Fgateway.api.gymshark.com&locale=en-US&realm=us&multipass_redirect_uri=https%3A%2F%2Fus.shop.gymshark.com%2Faccount&nonce=UKttDvE00G3bMWoGaGslJBUsbNP3Z7lSNNSCEdSUb8s&code_challenge=Cs6ubTIAlWFV3VatiPjIP1G52ehFBqrY51iOVeoccbI&code_challenge_method=S256');
+        await expect(this.page).toHaveURL('https://auth.gymshark.com/login?state=&client=2wbCyHVm1DdIX2EwdE7m0qVIbXjOCTXj&protocol=oauth2&scope=openid%20profile%20email&response_type=code&redirect_uri=https%3A%2F%2Fus.shop.gymshark.com%2Fapi%2Fauth%2Fcallback&audience=https%3A%2F%2Fgateway.api.gymshark.com&locale=en-US&realm=us&multipass_redirect_uri=https%3A%2F%2Fus.shop.gymshark.com%2Faccount&nonce=UKttDvE00G3bMWoGaGslJBUsbNP3Z7lSNNSCEdSUb8s&code_challenge=Cs6ubTIAlWFV3VatiPjIP1G52ehFBqrY51iOVeoccbI&code_challenge_method=S256');
     }
 
     async assertLanguagegDropdownIsHidden() {

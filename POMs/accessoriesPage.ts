@@ -7,8 +7,7 @@ export class AccessoriesPage {
     readonly removedFromTheWishlist: Locator;
     readonly wishlistButton: Locator;
     readonly accessoriesLink: Locator;
-    readonly productItem: Locator;
-    readonly productItemTwo: Locator;
+    readonly productItems: Locator;
     readonly removeItem: Locator;
     readonly quickAdd: Locator;
     readonly sizePicker: Locator;
@@ -21,10 +20,9 @@ export class AccessoriesPage {
         this.wishlistModal = page.getByLabel('Remove all wishlist products modal');
         this.addedToWishlistPopup = page.getByText('Item added to your wishlist');
         this.removedFromTheWishlist = page.getByText('Item removed from your wishlist');
-        this.wishlistButton = page.locator('.header_wrapper__ZQDOc > div:nth-child(4)');
-        this.accessoriesLink = page.getByRole('link', { name: 'accessories sale', exact: true });
-        this.productItem = page.locator('div.product-grid_grid__UbelU > article:nth-child(1)');
-        this.productItemTwo = page.locator('div.product-grid_grid__UbelU > article:nth-child(2)');
+        this.wishlistButton = page.getByRole('link', { name: 'View your wishlist' });
+        this.accessoriesLink = page.getByRole('link', { name: 'accessories', exact: true });
+        this.productItems = page.locator('div.product-grid_grid__UbelU > article');
         this.removeItem = page.locator('div.product-grid_grid__UbelU > article:nth-child(1)').getByLabel('Remove');
         this.quickAdd = page.locator('div.product-grid_grid__UbelU > article:nth-child(1)').getByRole('button').first();
         this.sizePicker = page.locator('[data-locator-id="pdp-size-s-select"]');
@@ -40,13 +38,13 @@ export class AccessoriesPage {
 
     async saveToWishlist() {
         await this.accessoriesLink.click();
-        await this.productItem.getByLabel('Add').click();
+        await this.productItems.first().getByLabel('Add').click();
     }
 
     async wishlistMultipleItems() {
         await this.accessoriesLink.click();
-        await this.productItem.getByLabel('Add').click();
-        await this.productItemTwo.getByLabel('Add').click();
+        await this.productItems.nth(0).getByLabel('Add').click(); 
+        await this.productItems.nth(1).getByLabel('Add').click(); 
     }
 
     async assertSuccessfulAddToWishlist() {
@@ -65,13 +63,13 @@ export class AccessoriesPage {
 
     async quickAddToCart() {
         await this.accessoriesLink.click();
-        await this.productItem.hover();
+        await this.productItems.first().hover();
         await this.quickAdd.click();
     }
 
     async addToCartDetailPage() {
         await this.accessoriesLink.click();
-        await this.productItem.click();
+        await this.productItems.first().click();
         await this.sizePicker.click();
         await this.addToBag.click();
     }

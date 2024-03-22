@@ -1,4 +1,5 @@
 import { test } from '../POMs/fixture';
+import { LoginPage } from '../POMs/loginPage';
 import { expect } from '@playwright/test';
 
 

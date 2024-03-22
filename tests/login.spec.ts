@@ -11,7 +11,6 @@ test('Login with correct credentials', async ({ page }) => {
     await homePage.acceptCookies();
     await homePage.goToAccountPage();
 
-
     const loginPage = new LoginPage(page);
 
     await loginPage.login(loginEnvironments.correctEmail, loginEnvironments.correctPassword);
@@ -40,7 +39,6 @@ test('Login with empty fields', async ({ page }) => {
     await page.goto(loginEnvironments.baseUrl);
     await homePage.acceptCookies();
     await homePage.goToAccountPage();
-
 
     const loginPage = new LoginPage(page);
     await loginPage.assertEmptyFieldLoginError();
